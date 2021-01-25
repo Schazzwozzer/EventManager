@@ -100,6 +100,9 @@ namespace SDD.Events {
     /// </summary>
     public void Raise(Event e) {
       EventDelegate del;
+#if DEV
+      e.Log();
+#endif
       if (delegates.TryGetValue(e.GetType(), out del)) {
         del.Invoke(e);
       }
